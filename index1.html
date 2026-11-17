@@ -1,0 +1,1037 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>A Little gift Made for My Kuchupuchu 🎀</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&amp;family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&amp;family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;family=Sacramento&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- GSAP CDN & Canvas Confetti -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              light: '#FFF1F5',
+              blush: '#FADCE5',
+              baby: '#F8C8D8',
+              rose: '#E9A0B5',
+              accent: '#E27396',
+              text: '#A65370',
+              deep: '#732C45'
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            lora: ['"Lora"', 'serif'],
+            sans: ['"DM Sans"', 'sans-serif'],
+            handwriting: ['"Caveat"', 'cursive'],
+            script: ['"Sacramento"', 'cursive']
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Custom romantic touches & animations */
+    body {
+      background-color: #FFF1F5;
+      color: #A65370;
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Floating ambient hearts canvas or bg sparkles */
+    .bg-grid-pattern {
+      background-image: radial-gradient(#F8C8D8 1.2px, transparent 1.2px);
+      background-size: 24px 24px;
+    }
+
+    .polaroid-shadow {
+      box-shadow: 0 12px 28px -6px rgba(166, 83, 112, 0.18), 0 4px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Floating Keyframe */
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1.5deg); }
+    }
+    .animate-float {
+      animation: gentleFloat 4s ease-in-out infinite;
+    }
+    .animate-float-delayed {
+      animation: gentleFloat 4.5s ease-in-out 1.5s infinite;
+    }
+    
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(233,160,181,0.4)); }
+      50% { transform: scale(1.04); filter: drop-shadow(0 0 18px rgba(226,115,150,0.85)); }
+    }
+    .animate-pulse-glow {
+      animation: pulseGlow 2s infinite ease-in-out;
+    }
+
+    @keyframes heartPop {
+      0% { transform: scale(0.6) translateY(0); opacity: 1; }
+      100% { transform: scale(1.3) translateY(-40px); opacity: 0; }
+    }
+    .heart-bubble {
+      position: absolute;
+      pointer-events: none;
+      animation: heartPop 1s ease-out forwards;
+      z-index: 60;
+    }
+
+    /* Custom subtle scrollbar */
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: rgba(250, 220, 229, 0.4);
+      border-radius: 9999px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #E9A0B5;
+      border-radius: 9999px;
+    }
+
+    /* Interactive hover bounce transitions */
+    .interactive-card {
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+    }
+    .interactive-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 16px 26px -6px rgba(226, 115, 150, 0.3);
+    }
+
+    /* Sparkle twinkle */
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
+      50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+    }
+    .twinkle-star {
+      animation: twinkle 3s ease-in-out infinite;
+    }
+
+    @keyframes softPulseAura {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.06); opacity: 0.95; }
+    }
+    .aura-glow {
+      animation: softPulseAura 3s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen relative bg-brand-light flex justify-center items-start text-brand-text antialiased">
+<!-- Ambient floating particles background container -->
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" id="ambient-container"><span class="absolute select-none pointer-events-none opacity-40" style="left: 30.4159vw; top: 53.2839vh; font-size: 15.0976px; translate: none; rotate: none; scale: none; transform: translate3d(13.5834px, -50.4526px, 0px) rotate(14.2272deg);">✨</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 32.7318vw; top: 12.5286vh; font-size: 29.683px; translate: none; rotate: none; scale: none; transform: translate3d(34.8633px, -129.492px, 0px) rotate(181.512deg);">🤍</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 49.1705vw; top: 46.7492vh; font-size: 29.1358px; translate: none; rotate: none; scale: none; transform: translate3d(32.7567px, -121.668px, 0px) rotate(100.582deg);">🧸</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 99.4278vw; top: 64.0508vh; font-size: 29.6405px; translate: none; rotate: none; scale: none; transform: translate3d(19.4726px, -72.3267px, 0px) rotate(18.644deg);">🎀</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 61.4441vw; top: 18.609vh; font-size: 15.6694px; translate: none; rotate: none; scale: none; transform: translate3d(7.4486px, -27.6662px, 0px) rotate(34.7242deg);">☁️</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 44.0381vw; top: 92.6442vh; font-size: 28.0984px; translate: none; rotate: none; scale: none; transform: translate3d(29.629px, -110.05px, 0px) rotate(239.142deg);">✨</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 57.4058vw; top: 75.6586vh; font-size: 27.0597px; translate: none; rotate: none; scale: none; transform: translate3d(30.8548px, -114.603px, 0px) rotate(240.782deg);">🧸</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 12.1673vw; top: 99.7291vh; font-size: 17.1542px; translate: none; rotate: none; scale: none; transform: translate3d(29.5603px, -109.795px, 0px) rotate(88.0848deg);">⭐</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 56.426vw; top: 26.8928vh; font-size: 20.5462px; translate: none; rotate: none; scale: none; transform: translate3d(22.723px, -84.3998px, 0px) rotate(42.0956deg);">🧸</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 44.8955vw; top: 29.1859vh; font-size: 21.5883px; translate: none; rotate: none; scale: none; transform: translate3d(0.5503px, -2.0439px, 0px) rotate(0.5682deg);">🎀</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 53.015vw; top: 92.1022vh; font-size: 26.7382px; translate: none; rotate: none; scale: none; transform: translate3d(3.8868px, -14.4368px, 0px) rotate(13.9257deg);">☁️</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 12.7984vw; top: 68.9994vh; font-size: 25.994px; translate: none; rotate: none; scale: none; transform: translate3d(11.2478px, -41.7774px, 0px) rotate(42.8284deg);">⭐</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 46.4881vw; top: 54.5471vh; font-size: 16.8582px; translate: none; rotate: none; scale: none; transform: translate3d(0.5141px, -1.9094px, 0px) rotate(4.776deg);">🎀</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 71.4368vw; top: 57.4997vh; font-size: 26.5205px; translate: none; rotate: none; scale: none; transform: translate3d(14.5883px, -54.1852px, 0px) rotate(147.936deg);">🤍</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 4.07891vw; top: 64.047vh; font-size: 15.9786px; translate: none; rotate: none; scale: none; transform: translate3d(22.2726px, -82.7267px, 0px) rotate(155.957deg);">🧸</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 8.39794vw; top: 54.6501vh; font-size: 15.1987px; translate: none; rotate: none; scale: none; transform: translate3d(28.673px, -106.499px, 0px) rotate(35.3768deg);">💖</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 43.2731vw; top: 76.9737vh; font-size: 17.5574px; translate: none; rotate: none; scale: none; transform: translate3d(3.2171px, -11.9491px, 0px) rotate(7.9728deg);">✨</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 2.00918vw; top: 15.5977vh; font-size: 17.7383px; translate: none; rotate: none; scale: none; transform: translate3d(30.7495px, -114.213px, 0px) rotate(248.049deg);">🌸</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 62.7463vw; top: 86.3613vh; font-size: 17.1014px; translate: none; rotate: none; scale: none; transform: translate3d(34.7468px, -129.06px, 0px) rotate(259.351deg);">✨</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 21.3304vw; top: 76.1572vh; font-size: 19.1726px; translate: none; rotate: none; scale: none; transform: translate3d(1.2566px, -4.6673px, 0px) rotate(3.714deg);">🧸</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 64.9178vw; top: 0.119947vh; font-size: 20.1021px; translate: none; rotate: none; scale: none; transform: translate3d(12.764px, -47.4092px, 0px) rotate(36.0505deg);">🎀</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 91.1836vw; top: 5.28285vh; font-size: 18.0684px; translate: none; rotate: none; scale: none; transform: translate3d(8.2067px, -30.4819px, 0px) rotate(8.5292deg);">🧸</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 85.0645vw; top: 14.967vh; font-size: 20.8866px; translate: none; rotate: none; scale: none; transform: translate3d(0.0692px, -0.2569px, 0px) rotate(0.5524deg);">⭐</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 43.8964vw; top: 27.9791vh; font-size: 26.7632px; translate: none; rotate: none; scale: none; transform: translate3d(31.1265px, -115.613px, 0px) rotate(131.128deg);">⭐</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 26.9vw; top: 10.5468vh; font-size: 16.8523px; translate: none; rotate: none; scale: none; transform: translate3d(33.571px, -124.692px, 0px) rotate(102.197deg);">🌸</span><span class="absolute select-none pointer-events-none opacity-40" style="left: 35.4884vw; top: 35.7777vh; font-size: 27.9483px; translate: none; rotate: none; scale: none; transform: translate3d(33.8329px, -125.665px, 0px) rotate(87.7589deg);">✨</span></div>
+<!-- Mobile phone wrapper -->
+<main class="w-full max-w-md min-h-screen relative z-10 flex flex-col items-center px-4 py-6 bg-grid-pattern shadow-2xl md:my-6 md:rounded-[40px] md:border-[10px] md:border-white overflow-hidden bg-brand-light/90 backdrop-blur-[2px]">
+<!-- Top Aesthetic Header / Music Toggle Bar -->
+<header class="w-full flex items-center justify-between px-3 py-2 bg-white/70 backdrop-blur-md rounded-full shadow-sm border border-brand-blush mb-4 z-50">
+<div class="flex items-center gap-1.5">
+<span class="text-lg">🎀</span>
+<span class="font-serif italic font-semibold text-xs tracking-wide text-brand-deep">For My Paglu</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-brand-blush text-brand-text" id="progress-indicator">1 / 6</span>
+<button aria-label="Toggle music vibes" class="w-7 h-7 rounded-full bg-brand-baby/40 hover:bg-brand-rose flex items-center justify-center text-xs transition-transform active:scale-90" id="music-toggle" title="Soft romantic chime">
+          🎵
+        </button>
+</div>
+</header>
+<!-- ============================================== -->
+<!-- SECTION 1: PASSWORD GATEWAY -->
+<!-- ============================================== -->
+<section class="section-page w-full flex flex-col items-center justify-center min-h-[78vh] text-center px-2 py-4" id="section-1">
+<!-- Cute Bear Illustration / Kawaii SVG Badge -->
+<div class="relative mb-5 animate-float">
+<div class="w-36 h-36 mx-auto bg-gradient-to-tr from-brand-blush to-white rounded-full flex items-center justify-center p-3 shadow-inner border-4 border-white transition-transform duration-300 hover:scale-105">
+<!-- Handcrafted SVG Kawaii Teddy Bear with Pink Ribbon -->
+<svg class="w-28 h-28 filter drop-shadow-md" viewBox="0 0 120 120">
+<!-- Ears -->
+<circle cx="30" cy="30" fill="#FBF8F5" r="16" stroke="#E9A0B5" stroke-width="2"></circle>
+<circle cx="30" cy="30" fill="#FADCE5" r="9"></circle>
+<circle cx="90" cy="30" fill="#FBF8F5" r="16" stroke="#E9A0B5" stroke-width="2"></circle>
+<circle cx="90" cy="30" fill="#FADCE5" r="9"></circle>
+<!-- Head -->
+<ellipse cx="60" cy="62" fill="#FFFFFF" rx="44" ry="40" stroke="#E9A0B5" stroke-width="2.5"></ellipse>
+<!-- Cheeks blush -->
+<circle cx="34" cy="68" fill="#F8C8D8" opacity="0.8" r="7"></circle>
+<circle cx="86" cy="68" fill="#F8C8D8" opacity="0.8" r="7"></circle>
+<!-- Eyes with sparkle -->
+<ellipse cx="44" cy="58" fill="#4A2E35" rx="4" ry="5.5"></ellipse>
+<circle cx="42.5" cy="56" fill="#FFFFFF" r="1.5"></circle>
+<ellipse cx="76" cy="58" fill="#4A2E35" rx="4" ry="5.5"></ellipse>
+<circle cx="74.5" cy="56" fill="#FFFFFF" r="1.5"></circle>
+<!-- Snout -->
+<ellipse cx="60" cy="69" fill="#FFF5F7" rx="14" ry="10"></ellipse>
+<ellipse cx="60" cy="66" fill="#A65370" rx="5" ry="3.5"></ellipse>
+<path d="M60 70 Q60 75 55 76 M60 70 Q60 75 65 76" fill="none" stroke="#A65370" stroke-linecap="round" stroke-width="1.8"></path>
+<!-- Cute Pink Bow -->
+<path d="M48 24 C40 20 40 10 50 16 Z" fill="#E9A0B5"></path>
+<path d="M56 24 C64 20 64 10 54 16 Z" fill="#E9A0B5"></path>
+<circle cx="52" cy="20" fill="#E27396" r="4.5"></circle>
+</svg>
+</div>
+<span class="absolute -top-1 -right-1 text-2xl twinkle-star">✨</span>
+<span class="absolute bottom-0 -left-2 text-2xl animate-bounce">💖</span>
+</div>
+<!-- Main greeting -->
+<h1 class="font-serif text-3xl font-bold text-brand-deep tracking-tight mb-2">
+        Heyyy Pratham! 🎀
+      </h1>
+<p class="font-sans text-sm text-brand-text/90 max-w-xs leading-relaxed mb-1">
+        Someone made a little piece of magic just for you.
+      </p>
+<p class="font-serif italic text-xs text-brand-accent mb-6">
+        "Before entering, tell me our secret password!"
+      </p>
+<!-- Password card form -->
+<div class="w-full max-w-xs bg-white/80 backdrop-blur-md p-5 rounded-3xl border border-brand-rose/30 shadow-lg flex flex-col gap-3 interactive-card">
+<div class="relative">
+<input autocomplete="off" class="w-full px-4 py-3 text-center text-sm font-semibold rounded-2xl bg-brand-light/70 border border-brand-rose/40 text-brand-deep placeholder-brand-text/40 focus:outline-none focus:ring-2 focus:ring-brand-rose/50 transition-all shadow-inner" id="password-input" placeholder="Hint: paglu or 20nov..." type="text">
+<span class="absolute right-3 top-3.5 text-xs opacity-60">🔐</span>
+</div>
+<button class="w-full py-3 px-6 rounded-2xl bg-gradient-to-r from-brand-rose via-brand-accent to-brand-rose text-white font-medium text-sm shadow-md hover:shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 group" id="unlock-btn">
+<span>Unlock My World</span>
+<span class="group-hover:translate-x-1 group-hover:scale-125 transition-transform duration-300">💗</span>
+</button>
+<p class="hidden text-xs text-rose-500 font-medium pt-1 animate-shake" id="password-error">
+          Arey paglu! Wrong secret code 🙈 (Hint: try <strong class="underline cursor-pointer" onclick="document.getElementById('password-input').value='270622'">270622</strong> or <strong class="underline cursor-pointer" onclick="document.getElementById('password-input').value='20nov'">20nov</strong>)
+        </p>
+</div>
+<div class="mt-6 flex items-center gap-1.5 text-xs text-brand-text/60">
+<span>🐾</span>
+<span class="italic">Strictly reserved for the birthday boy</span>
+</div>
+</section>
+<!-- ============================================== -->
+<!-- SECTION 2: THE YES OR NO QUESTION -->
+<!-- ============================================== -->
+<section class="section-page hidden w-full flex flex-col items-center justify-center min-h-[78vh] text-center px-3 py-4" id="section-2">
+<!-- Character Display: Switches between SVG Panda, Crying Love GIF, and Hugging Love GIF -->
+<div class="relative w-44 h-44 mx-auto mb-3 flex items-center justify-center" id="q2-character-wrapper">
+<!-- SVG Panda Default Character -->
+<div class="w-36 h-36 bg-white rounded-full p-3 shadow-md border-4 border-brand-blush flex items-center justify-center animate-float transition-all duration-300" id="q2-character-default">
+<svg class="w-28 h-28" viewBox="0 0 120 120">
+<circle cx="28" cy="30" fill="#3D2930" r="15"></circle>
+<circle cx="92" cy="30" fill="#3D2930" r="15"></circle>
+<ellipse cx="60" cy="62" fill="#FFFFFF" rx="44" ry="40" stroke="#E9A0B5" stroke-width="2"></ellipse>
+<ellipse cx="42" cy="56" fill="#3D2930" rx="12" ry="15" transform="rotate(-15 42 56)"></ellipse>
+<ellipse cx="78" cy="56" fill="#3D2930" rx="12" ry="15" transform="rotate(15 78 56)"></ellipse>
+<circle cx="43" cy="56" fill="#FFFFFF" r="4.5"></circle>
+<circle cx="77" cy="56" fill="#FFFFFF" r="4.5"></circle>
+<circle cx="44" cy="55.5" fill="#3D2930" r="2"></circle>
+<circle cx="78" cy="55.5" fill="#3D2930" r="2"></circle>
+<circle cx="30" cy="72" fill="#F8C8D8" opacity="0.9" r="7"></circle>
+<circle cx="90" cy="72" fill="#F8C8D8" opacity="0.9" r="7"></circle>
+<ellipse cx="60" cy="69" fill="#3D2930" rx="6" ry="4"></ellipse>
+<path d="M60 73 Q55 79 50 75 M60 73 Q65 79 70 75" fill="none" stroke="#3D2930" stroke-linecap="round" stroke-width="1.8"></path>
+</svg>
+</div>
+<!-- Adorable Crying/Sad GIF (Shown on NO) -->
+<div class="hidden w-40 h-40 bg-white rounded-3xl p-2 shadow-xl border-4 border-rose-300 flex items-center justify-center overflow-hidden animate-bounce" id="q2-bubu-crying">
+<img alt="Sad Love Crying" class="w-full h-full object-contain" onerror="this.src='https://media.tenor.com/2roX3uxz_68AAAAC/bubu-dudu-sad.gif'" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnO2b2zvvOEMTi2HneDDpUn8GOcDIvhkD9p_wXFhuZCtSRy17wWFFrwmjGctt18-fGytvGk73zCrmLmDRdzYGlcMpDLPzlHUMp8MajdhJjtN2w2g3lDZrtFb3LvSagHr3TN6GJkPlslqr064feyYr2cpzvPl1F1tWz8DYRQm19NuRg0bjI4dJhMUeyZ8s8XIRRZXvLeWr58gG1wT_itFn9QcVL4SVdZYoSQnTZLn9X">
+</div>
+<!-- Loving Hugging GIF (Shown briefly on YES) -->
+<div class="hidden w-40 h-40 bg-white rounded-3xl p-2 shadow-xl border-4 border-brand-accent flex items-center justify-center overflow-hidden animate-pulse" id="q2-bubu-happy">
+<img alt="Happy Hugging My Love" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD42YdfCvryxwsQ1Ht2H5yjbGvL8GTaUUsd8iAbZHQh8Lxh03VQ4QtcVkWbCIo6-JJNq_dBKrja6R7-PHmtljvMktjSiMIwTZh8Yrt3E_-hTfcVb-rIh3L4JePi3rrCIdbD8izKUQmSF6o6Vjd3XQR4SBsjeVws01x2TUH1M8H8chxsQkOLEY_NBp0_NTQnZ36IzABmoo1VRyrRuazl2dqHLr-j_YGPJ5a85QXjrfsz">
+</div>
+</div>
+<div class="inline-block bg-white/90 border border-brand-rose/40 px-3 py-1 rounded-full text-xs font-semibold text-brand-accent mb-2">
+        A quick romantic checkpoint 🌸
+      </div>
+<h2 class="font-serif text-2xl md:text-3xl font-bold text-brand-deep mb-2 transition-all" id="q2-title">
+        Waittt, my Paglu! 🥺
+      </h2>
+<p class="font-sans text-sm text-brand-text/90 max-w-xs mb-6" id="q2-subtitle">
+        Do you want to know more, or do you want to get your surprise?
+      </p>
+<!-- Yes or No button playground with evasion physics -->
+<div class="relative w-full max-w-xs flex flex-col gap-3 min-h-[140px] justify-center items-center" id="q2-btn-container">
+<button class="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-brand-rose via-brand-accent to-brand-rose text-white font-bold text-sm tracking-wide shadow-lg hover:shadow-2xl active:scale-95 transition-all flex items-center justify-center gap-2 transform" id="btn-yes">
+<span>YES, SHOW ME!</span>
+<span class="text-base animate-pulse">💗</span>
+</button>
+<button class="w-full py-3 px-6 rounded-2xl bg-white border border-brand-rose/50 text-brand-text font-semibold text-xs tracking-wide shadow-sm transition-all duration-300 hover:bg-brand-blush/30 active:scale-90 flex items-center justify-center gap-2 relative z-20 cursor-pointer" id="btn-no">
+<span id="no-btn-text">NO, NOT INTERESTED</span>
+<span>🙈</span>
+</button>
+</div>
+<!-- Tantrum / Sad Message Feedback -->
+<div class="hidden mt-4 bg-white/95 p-4 rounded-2xl border-2 border-rose-300 shadow-xl max-w-xs transform transition-all" id="no-crying-feedback">
+<div class="flex items-center justify-center gap-1.5 text-xs font-bold text-brand-deep mb-1">
+<span>🥺💔</span>
+<span>Areyyyy! Don't break my heart, Paglu!</span>
+</div>
+<p class="text-xs text-brand-accent font-semibold">
+          Pleaseee, give me one chance? 🎀
+        </p>
+<p class="text-[11px] text-brand-text/80 mt-1 italic">
+          Look at how huge &amp; sparkly that YES button is getting! ✨
+        </p>
+</div>
+</section>
+<!-- ============================================== -->
+<!-- SECTION 3: OUR LITTLE WORLD — PHOTO MEMORIES (8 POLAROIDS) -->
+<!-- ============================================== -->
+<section class="section-page hidden w-full flex flex-col items-center min-h-[78vh] px-1 py-3 text-center" id="section-3">
+<div class="inline-flex items-center gap-1 bg-white/80 border border-brand-blush px-3 py-1 rounded-full text-[11px] font-semibold text-brand-accent mb-2">
+<span>📸</span> <span>Scrapbook of Memories</span>
+</div>
+<h2 class="font-serif text-2xl md:text-3xl font-bold text-brand-deep mb-1">
+        Our Little World ♡
+      </h2>
+<p class="font-sans text-xs text-brand-text/80 max-w-xs mb-4">
+        Our favourite memories &amp; moments captured in polaroids! Easily replaceable with real pictures.
+      </p>
+<!-- Responsive 2-column Grid of 8 Memory Photo Polaroids -->
+<div class="w-full max-h-[58vh] overflow-y-auto custom-scroll pr-1 pl-1 py-2 grid grid-cols-2 gap-3">
+<!-- Polaroid 1 -->
+<div class="polaroid-card interactive-card bg-white p-2.5 pb-4 rounded-2xl polaroid-shadow border border-brand-blush/60 transform -rotate-1 hover:rotate-0 duration-300 cursor-pointer">
+<div class="relative w-full aspect-square bg-gradient-to-tr from-brand-blush via-brand-light to-white rounded-xl overflow-hidden flex flex-col items-center justify-center border border-brand-rose/20 group">
+<span class="text-3xl mb-1 group-hover:scale-125 transition-transform duration-300">🌆</span>
+<p class="text-[10px] font-bold text-brand-accent tracking-wide uppercase">Photo #1</p>
+<p class="text-[8px] text-brand-text/60 mt-0.5"><img src="assets/WhatsApp Image 2026-11-17 at 8.34.56 PM (1).jpeg" alt=""></p>
+<div class="absolute top-1.5 right-1.5 text-[9px] bg-white/85 px-1.5 py-0.5 rounded-full text-brand-text font-semibold">2026</div>
+</div>
+<div class="mt-2.5 text-center">
+<p class="font-handwriting text-base leading-tight text-brand-deep font-bold">"One of my favourite moments."</p>
+<p class="text-[9px] text-brand-text/70 mt-0.5">Peaceful &amp; sweet 🌸</p>
+</div>
+</div>
+<!-- Polaroid 2 -->
+<div class="polaroid-card interactive-card bg-white p-2.5 pb-4 rounded-2xl polaroid-shadow border border-brand-blush/60 transform rotate-2 hover:rotate-0 duration-300 cursor-pointer">
+<div class="relative w-full aspect-square bg-gradient-to-br from-brand-baby/50 via-brand-light to-white rounded-xl overflow-hidden flex flex-col items-center justify-center border border-brand-rose/20 group">
+<span class="text-3xl mb-1 group-hover:scale-125 transition-transform duration-300">☕</span>
+<p class="text-[10px] font-bold text-brand-accent tracking-wide uppercase">Photo #2</p>
+<p class="text-[8px] text-brand-text/60 mt-0.5"><img src="assets/WhatsApp Image 2026-11-17 at 8.34.57 PM (1).jpeg" alt=""></p>
+<div class="absolute top-1.5 right-1.5 text-[9px] bg-white/85 px-1.5 py-0.5 rounded-full text-brand-text font-semibold">Cute Cafe</div>
+</div>
+<div class="mt-2.5 text-center">
+<p class="font-handwriting text-base leading-tight text-brand-deep font-bold">"My favourite human."</p>
+<p class="text-[9px] text-brand-text/70 mt-0.5">My sunshine ✨</p>
+</div>
+</div>
+<!-- Polaroid 3 -->
+<div class="polaroid-card interactive-card bg-white p-2.5 pb-4 rounded-2xl polaroid-shadow border border-brand-blush/60 transform -rotate-2 hover:rotate-0 duration-300 cursor-pointer">
+<div class="relative w-full aspect-square bg-gradient-to-tr from-brand-blush via-white to-brand-baby/40 rounded-xl overflow-hidden flex flex-col items-center justify-center border border-brand-rose/20 group">
+<span class="text-3xl mb-1 group-hover:scale-125 transition-transform duration-300">✨</span>
+<p class="text-[10px] font-bold text-brand-accent tracking-wide uppercase">Photo #3</p>
+<p class="text-[8px] text-brand-text/60 mt-0.5"><img src="assets/WhatsApp Image 2026-11-17 at 8.34.57 PM.jpeg" alt=""></p>
+<div class="absolute top-1.5 right-1.5 text-[9px] bg-white/85 px-1.5 py-0.5 rounded-full text-brand-text font-semibold">Infinite</div>
+</div>
+<div class="mt-2.5 text-center">
+<p class="font-handwriting text-base leading-tight text-brand-deep font-bold">"A memory I wish I could relive."</p>
+<p class="text-[9px] text-brand-text/70 mt-0.5">Holding hands 🐾</p>
+</div>
+</div>
+<!-- Polaroid 4 -->
+<div class="polaroid-card interactive-card bg-white p-2.5 pb-4 rounded-2xl polaroid-shadow border border-brand-blush/60 transform rotate-1 hover:rotate-0 duration-300 cursor-pointer">
+<div class="relative w-full aspect-square bg-gradient-to-b from-brand-light via-brand-blush/40 to-white rounded-xl overflow-hidden flex flex-col items-center justify-center border border-brand-rose/20 group">
+<span class="text-3xl mb-1 group-hover:scale-125 transition-transform duration-300">🧸</span>
+<p class="text-[10px] font-bold text-brand-accent tracking-wide uppercase">Photo #4</p>
+<p class="text-[8px] text-brand-text/60 mt-0.5"><img src="assets/WhatsApp Image 2026-11-17 at 8.34.56 PM.jpeg" alt=""></p>
+<div class="absolute top-1.5 right-1.5 text-[9px] bg-white/85 px-1.5 py-0.5 rounded-full text-brand-text font-semibold">Always</div>
+</div>
+<div class="mt-2.5 text-center">
+<p class="font-handwriting text-base leading-tight text-brand-deep font-bold">"Us being us. ♡"</p>
+<p class="text-[9px] text-brand-text/70 mt-0.5">Silly &amp; paired 🎀</p>
+</div>
+</div>
+<!-- Polaroid 5 -->
+<div class="polaroid-card interactive-card bg-white p-2.5 pb-4 rounded-2xl polaroid-shadow border border-brand-blush/60 transform -rotate-1 hover:rotate-0 duration-300 cursor-pointer">
+<div class="relative w-full aspect-square bg-gradient-to-tr from-brand-baby/60 via-brand-light to-white rounded-xl overflow-hidden flex flex-col items-center justify-center border border-brand-rose/20 group">
+<span class="text-3xl mb-1 group-hover:scale-125 transition-transform duration-300">😂</span>
+<p class="text-[10px] font-bold text-brand-accent tracking-wide uppercase">Photo #5</p>
+<p class="text-[8px] text-brand-text/60 mt-0.5"><img src="assets/WhatsApp Image 2026-11-17 at 8.34.57 PM (1).jpeg" alt=""></p>
+<div class="absolute top-1.5 right-1.5 text-[9px] bg-white/85 px-1.5 py-0.5 rounded-full text-brand-text font-semibold">Giggles</div>
+</div>
+<div class="mt-2.5 text-center">
+<p class="font-handwriting text-base leading-tight text-brand-deep font-bold">"The time we couldn't stop laughing."</p>
+<p class="text-[9px] text-brand-text/70 mt-0.5">Tears of joy 🌸</p>
+</div>
+</div>
+<!-- Polaroid 6 -->
+<div class="polaroid-card interactive-card bg-white p-2.5 pb-4 rounded-2xl polaroid-shadow border border-brand-blush/60 transform rotate-2 hover:rotate-0 duration-300 cursor-pointer">
+<div class="relative w-full aspect-square bg-gradient-to-bl from-brand-blush via-white to-brand-light rounded-xl overflow-hidden flex flex-col items-center justify-center border border-brand-rose/20 group">
+<span class="text-3xl mb-1 group-hover:scale-125 transition-transform duration-300">💫</span>
+<p class="text-[10px] font-bold text-brand-accent tracking-wide uppercase">Photo #6</p>
+<p class="text-[8px] text-brand-text/60 mt-0.5"><img src="assets/WhatsApp Image 2026-11-17 at 8.34.59 PM.jpeg" alt=""></p>
+<div class="absolute top-1.5 right-1.5 text-[9px] bg-white/85 px-1.5 py-0.5 rounded-full text-brand-text font-semibold">Magic</div>
+</div>
+<div class="mt-2.5 text-center">
+<p class="font-handwriting text-base leading-tight text-brand-deep font-bold">"Every moment with you."</p>
+<p class="text-[9px] text-brand-text/70 mt-0.5">Pure warmth 💖</p>
+</div>
+</div>
+<!-- Polaroid 7 -->
+<div class="polaroid-card interactive-card bg-white p-2.5 pb-4 rounded-2xl polaroid-shadow border border-brand-blush/60 transform -rotate-2 hover:rotate-0 duration-300 cursor-pointer">
+<div class="relative w-full aspect-square bg-gradient-to-tr from-brand-light via-brand-baby/40 to-white rounded-xl overflow-hidden flex flex-col items-center justify-center border border-brand-rose/20 group">
+<span class="text-3xl mb-1 group-hover:scale-125 transition-transform duration-300">🏡</span>
+<p class="text-[10px] font-bold text-brand-accent tracking-wide uppercase">Photo #7</p>
+<p class="text-[8px] text-brand-text/60 mt-0.5"><img src="assets/WhatsApp Image 2026-11-17 at 8.34.57 PM.jpeg" alt=""></p>
+<div class="absolute top-1.5 right-1.5 text-[9px] bg-white/85 px-1.5 py-0.5 rounded-full text-brand-text font-semibold">Comfort</div>
+</div>
+<div class="mt-2.5 text-center">
+<p class="font-handwriting text-base leading-tight text-brand-deep font-bold">"My happiest place."</p>
+<p class="text-[9px] text-brand-text/70 mt-0.5">Right beside you 🐾</p>
+</div>
+</div>
+<!-- Polaroid 8 -->
+<div class="polaroid-card interactive-card bg-white p-2.5 pb-4 rounded-2xl polaroid-shadow border border-brand-blush/60 transform rotate-1 hover:rotate-0 duration-300 cursor-pointer">
+<div class="relative w-full aspect-square bg-gradient-to-b from-brand-blush/80 via-brand-light to-white rounded-xl overflow-hidden flex flex-col items-center justify-center border border-brand-rose/20 group">
+<span class="text-3xl mb-1 group-hover:scale-125 transition-transform duration-300">💍</span>
+<p class="text-[10px] font-bold text-brand-accent tracking-wide uppercase">Photo #8</p>
+<p class="text-[8px] text-brand-text/60 mt-0.5"><img src="assets/WhatsApp Image 2026-11-17 at 8.34.58 PM.jpeg" alt=""></p>
+<div class="absolute top-1.5 right-1.5 text-[9px] bg-white/85 px-1.5 py-0.5 rounded-full text-brand-text font-semibold">Forever</div>
+</div>
+<div class="mt-2.5 text-center">
+<p class="font-handwriting text-base leading-tight text-brand-deep font-bold">"Forever and always with you. ♡"</p>
+<p class="text-[9px] text-brand-text/70 mt-0.5">Endless love 🎀</p>
+</div>
+</div>
+</div>
+<p class="text-[11px] text-brand-text/60 flex items-center justify-center gap-1 my-2">
+<span>👇</span> <span>Scroll to see all 8 memory polaroids</span> <span>🎀</span>
+</p>
+<!-- Next Step Button -->
+<button class="mt-2 w-full max-w-xs py-3.5 px-6 rounded-2xl bg-gradient-to-r from-brand-rose via-brand-accent to-brand-rose text-white font-bold text-sm shadow-md hover:shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 group" id="to-section-4">
+<span>Look At The Cake! 🎂</span>
+<span class="group-hover:translate-x-1.5 transition-transform">→</span>
+</button>
+</section>
+<!-- ============================================== -->
+<!-- SECTION 4: BIRTHDAY CAKE VIDEO / INTERACTION -->
+<!-- ============================================== -->
+<section class="section-page hidden w-full flex flex-col items-center min-h-[78vh] px-2 py-4 text-center" id="section-4">
+<div class="inline-flex items-center gap-1 bg-white/80 border border-brand-blush px-3 py-1 rounded-full text-xs font-semibold text-brand-accent mb-2">
+<span>🎂</span> <span>Make A Secret Wish!</span>
+</div>
+<h2 class="font-serif text-2xl md:text-3xl font-bold text-brand-deep mb-1">
+        Okayyy, now it's your special day! 🎂
+      </h2>
+<p class="font-sans text-xs text-brand-text/80 max-w-xs mb-4">
+        20 November 2026 • The day my favourite person arrived into this world!
+      </p>
+<!-- Birthday Interactive Cake Celebration Card -->
+<div class="w-full max-w-xs bg-white p-4 rounded-3xl polaroid-shadow border border-brand-rose/30 flex flex-col items-center relative overflow-hidden interactive-card">
+<!-- Clean pastel interactive cake container (Video play icon removed) -->
+<div class="relative w-full aspect-video bg-gradient-to-b from-brand-blush/60 via-brand-light to-white rounded-2xl overflow-hidden border border-brand-rose/30 flex items-center justify-center group shadow-inner">
+<!-- Interactive animated Pastel Birthday Cake -->
+<div class="w-full h-full flex flex-col items-center justify-center p-3 select-none cursor-pointer transition-transform duration-300" id="cake-poster">
+<!-- Animated Cake SVG with flickering candle -->
+<svg class="w-24 h-24 filter drop-shadow-md transition-transform duration-300 group-hover:scale-105" id="cake-svg" viewBox="0 0 100 90">
+<!-- Flame with flicker animation -->
+<g class="animate-bounce" id="candle-flame" style="animation-duration: 1.2s;">
+<path d="M50 12 C52 18 55 22 50 28 C45 22 48 18 50 12 Z" fill="#FFB703"></path>
+<circle cx="50" cy="22" fill="#FB8500" r="2.5"></circle>
+</g>
+<!-- Candle -->
+<rect fill="#FFF" height="15" rx="1.5" stroke="#E9A0B5" stroke-width="0.8" width="4" x="48" y="27"></rect>
+<line stroke="#E27396" stroke-width="0.8" x1="48" x2="52" y1="31" y2="33"></line>
+<line stroke="#E27396" stroke-width="0.8" x1="48" x2="52" y1="36" y2="38"></line>
+<!-- Tier 1 (Top) -->
+<rect fill="#FFFFFF" height="18" rx="4" stroke="#E9A0B5" stroke-width="1.5" width="40" x="30" y="42"></rect>
+<path d="M30 46 Q35 52 40 46 Q45 52 50 46 Q55 52 60 46 Q65 52 70 46" fill="#F8C8D8" opacity="0.9"></path>
+<!-- Strawberries / Cherries on top -->
+<circle cx="36" cy="42" fill="#E27396" r="3"></circle>
+<circle cx="50" cy="42" fill="#E27396" r="3"></circle>
+<circle cx="64" cy="42" fill="#E27396" r="3"></circle>
+<!-- Tier 2 (Bottom) -->
+<rect fill="#FADCE5" height="22" rx="5" stroke="#E9A0B5" stroke-width="1.5" width="60" x="20" y="60"></rect>
+<path d="M20 66 Q26 73 32 66 Q38 73 44 66 Q50 73 56 66 Q62 73 68 66 Q74 73 80 66" fill="#FFFFFF" opacity="0.8"></path>
+<!-- Plate -->
+<ellipse cx="50" cy="83" fill="#E9A0B5" opacity="0.4" rx="42" ry="5"></ellipse>
+</svg>
+<span class="text-[12px] font-bold text-brand-deep mt-1 tracking-wide" id="cake-status-text">Tap Cake To Blow Candle &amp; Make A Wish! 🕯️</span>
+<span class="text-[10px] text-brand-accent/80 font-medium">Sparkles &amp; wishes for Paglu ✨</span>
+</div>
+</div>
+<!-- Birthday cake action controls bar -->
+<div class="w-full flex items-center justify-between mt-3 px-1">
+<div class="flex items-center gap-1.5 text-xs text-brand-text font-medium">
+<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" id="video-status-badge"></span>
+<span id="video-label">Birthday Cake Ready</span>
+</div>
+<button class="text-xs px-3 py-1 bg-brand-blush hover:bg-brand-baby rounded-full font-bold text-brand-deep active:scale-90 transition-all flex items-center gap-1" id="btn-confetti-burst">
+<span>Confetti!</span> <span>🎊</span>
+</button>
+</div>
+</div>
+<!-- Navigation button to Letter -->
+<button class="mt-6 w-full max-w-xs py-3.5 px-6 rounded-2xl bg-gradient-to-r from-brand-rose via-brand-accent to-brand-rose text-white font-bold text-sm shadow-md hover:shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 group" id="to-section-5">
+<span>Read My Birthday Letter 💌</span>
+<span class="group-hover:translate-x-1.5 transition-transform">→</span>
+</button>
+</section>
+<!-- ============================================== -->
+<!-- SECTION 5: MY FEELINGS — PERSONAL BIRTHDAY LETTER -->
+<!-- ============================================== -->
+<section class="section-page hidden w-full flex flex-col items-center min-h-[78vh] px-2 py-4 text-center" id="section-5">
+<div class="inline-flex items-center gap-1 bg-white/80 border border-brand-blush px-3 py-1 rounded-full text-xs font-semibold text-brand-accent mb-2">
+<span>💌</span> <span>From My Heart To Yours</span>
+</div>
+<h2 class="font-serif text-2xl md:text-3xl font-bold text-brand-deep mb-1">
+        There's something I've wanted to tell you... 💌
+      </h2>
+<p class="font-sans text-xs text-brand-text/80 max-w-xs mb-5">
+        Tap the heart seal below to open your personal birthday letter, my Paglu!
+      </p>
+<!-- Envelope & Letter Interactive Container -->
+<div class="w-full max-w-xs relative my-2 flex flex-col items-center cursor-pointer group" id="envelope-box">
+<!-- Closed Envelope Graphic -->
+<div class="w-64 h-40 bg-gradient-to-b from-[#FDE8EF] to-[#F8C8D8] rounded-2xl border-2 border-brand-rose/60 shadow-xl flex flex-col items-center justify-center relative overflow-hidden transition-all duration-500 group-hover:scale-105" id="envelope-graphic">
+<!-- Triangle flap fold -->
+<div class="absolute top-0 inset-x-0 mx-auto w-0 h-0 border-l-[126px] border-l-transparent border-r-[126px] border-r-transparent border-t-[82px] border-t-brand-rose/40"></div>
+<!-- Heart Seal Button -->
+<div class="relative z-10 w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center border-2 border-brand-accent animate-pulse-glow">
+<span class="text-xl">💖</span>
+</div>
+<p class="relative z-10 font-serif italic text-sm text-brand-deep mt-2 font-semibold">
+            Tap to open letter ♡
+          </p>
+</div>
+<!-- Unfolded Letter with Warm, Elegant, High-Readability Font -->
+<div class="hidden w-full bg-[#FFFDF9] p-6 rounded-3xl border-2 border-brand-rose/40 shadow-2xl text-left relative overflow-hidden" id="letter-content">
+<div class="absolute -right-4 -bottom-4 text-6xl opacity-10 select-none">🌸</div>
+<div class="absolute top-3.5 right-4 text-xs font-lora italic text-brand-accent font-semibold tracking-wide">
+            20 November 2026
+          </div>
+<!-- Salutation -->
+<h3 class="font-serif italic text-xl text-brand-deep font-bold mb-3 pr-16 tracking-tight">
+            Dearest Pratham (My Paglu),
+          </h3>
+<!-- Letter Body (Clean, romantic, effortlessly readable Lora serif) -->
+<div class="font-lora text-[13.5px] text-brand-deep/90 leading-relaxed space-y-3 font-normal tracking-wide">
+<p class="font-medium text-brand-deep">
+              Happy Birthday, to my baby ji ! 🎂✨
+            </p>
+<p>
+              I just want to make you feel special , you mean so much to me , you are my most favourite person in the whole world🥰🤗🌍🌍🌍
+            </p>
+<p>
+              Thank you for being my constant comfort, my partner  and the only person who can match my level of crazy. You make everyday moments feel warmer and lighter just by being in them.
+            </p>
+<p>
+             I hope you like this and i just want to tell you that , I love you so much so so much , you are my everything my baby ji meri vydi 😁😉🙄😘😘
+            </p>
+</div>
+<!-- Signature -->
+<div class="mt-5 pt-3 border-t border-brand-blush flex flex-col items-end">
+<p class="font-lora italic text-sm text-brand-deep font-semibold">
+              Forever your biggest fan,
+            </p>
+<p class="font-script text-2xl text-brand-accent mt-0.5 font-bold">
+              With all my love ♡
+            </p>
+</div>
+</div>
+</div>
+<!-- Action Button To Final Surprise -->
+<button class="mt-6 w-full max-w-xs py-3.5 px-6 rounded-2xl bg-gradient-to-r from-brand-rose via-brand-accent to-brand-rose text-white font-bold text-sm shadow-md hover:shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 group" id="to-section-6">
+<span>The Final Surprise 🎀</span>
+<span class="group-hover:translate-x-1.5 transition-transform">→</span>
+</button>
+</section>
+<!-- ============================================== -->
+<!-- SECTION 6: FINAL BIRTHDAY SURPRISE (STICKER ILLUSTRATION) -->
+<!-- ============================================== -->
+<section class="section-page hidden w-full flex flex-col items-center justify-center min-h-[78vh] text-center px-2 py-4" id="section-6">
+<!-- Clean Romantic Illustration with Halo & Glow -->
+<div class="relative mb-4 animate-float">
+<!-- Glowing scrapbook aura background ring -->
+<div class="absolute -inset-4 bg-gradient-to-tr from-brand-rose/30 via-brand-blush/50 to-pink-200/40 rounded-full blur-xl aura-glow pointer-events-none"></div>
+<!-- Decorative floating badges & stickers -->
+<span class="absolute -top-3 -right-2 text-2xl twinkle-star z-20 select-none">✨</span>
+<span class="absolute -top-1 -left-3 text-xl animate-float-delayed z-20 select-none">🌸</span>
+<span class="absolute bottom-5 -left-3 text-2xl animate-bounce z-20 select-none" style="animation-duration: 2.2s;">🎂</span>
+<span class="absolute -bottom-2 -right-1 text-2xl animate-pulse z-20 select-none">💖</span>
+<div class="absolute -top-2 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-sm border border-brand-rose/40 px-3.5 py-1 rounded-full text-xs font-bold text-brand-deep shadow-sm z-30 flex items-center gap-1.5">
+<span>🎀</span><span>My Love</span><span>🐾</span>
+</div>
+<!-- Aesthetic Rounded Circular Card with Image 4 -->
+<div class="w-56 h-56 mx-auto bg-gradient-to-b from-white via-[#FFF5F8] to-brand-blush/60 rounded-full flex items-center justify-center p-2.5 border-4 border-white shadow-2xl relative overflow-hidden transition-transform duration-300 hover:scale-105">
+<img alt="Cute Bubu and Dudu bear couple hugging closely with glowing heart" class="w-full h-full object-contain p-2" src="https://lh3.googleusercontent.com/aida/ALJJyrAjTwBxt22cbzkhdW-l0DjipDlyF222J0ob0neOySOcAScwu42U12d3xxWmDW_5jH-eHf-TnTE2TnAtp2208wMFyLGnx78SUa_iTKuP73dqBT3rPaUZhlOPTA0OdG053oKiItXetNbeikPpFHscsN0GWJsGUh__pH1ycuLYfRK7AwzHXRTfG0es_fzD9WVO-NAY5q5t-pU1Z1IsPU9FkJhgXV51d08pZMDHFQBXOACgOg">
+</div>
+</div>
+<!-- Final Heartfelt Words -->
+<h2 class="font-serif text-3xl font-bold text-brand-deep tracking-tight mb-3">
+        Happy Birthday, myyyyy babbbbyyyy jiiii! ❤️😘😘😘
+      </h2>
+<div class="w-full max-w-xs bg-white/90 backdrop-blur-md p-5 rounded-3xl border border-brand-rose/40 shadow-lg text-center space-y-3 mb-6 interactive-card">
+<p class="font-serif italic text-sm text-brand-deep leading-relaxed">
+          "Once Again Happpyyyy Birthday meri vydi "
+        </p>
+<p class="font-sans text-xs text-brand-text/90 leading-relaxed">
+          You are my favourite person, my happiness and my little piece of magic. I hope this year brings you everything your heart wishes for.
+        </p>
+<p class="font-handwriting text-2xl text-brand-accent font-bold pt-1">
+          I love youuu! 💗
+        </p>
+</div>
+<!-- Action buttons -->
+<div class="w-full max-w-xs flex flex-col gap-3">
+<button class="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-brand-rose via-brand-accent to-brand-rose text-white font-bold text-sm shadow-lg hover:shadow-xl active:scale-95 transition-all flex items-center justify-center gap-2 group" id="btn-big-celebrate">
+<span>Shower Endless Confetti! 🎊</span>
+<span class="group-hover:rotate-12 transition-transform">✨</span>
+</button>
+<button class="w-full py-3 px-6 rounded-2xl bg-white border border-brand-rose text-brand-deep font-semibold text-xs tracking-wide shadow-sm hover:bg-brand-blush/30 active:scale-95 transition-all flex items-center justify-center gap-2" id="btn-replay">
+<span>↺ Replay Our Surprise From Start</span>
+</button>
+</div>
+</section>
+<!-- Footer tag -->
+<footer class="mt-auto pt-6 text-[10px] text-brand-text/60 tracking-wider text-center">
+      CRAFTED WITH ENDLESS LOVE FOR MY BABYYYY • 20 NOV 2026 🎀
+    </footer>
+</main>
+<!-- Audio element -->
+<audio id="romantic-audio" preload="none"></audio>
+<!-- Interactive Logic with GSAP and Vanilla JS -->
+<script>
+    // Configurable state
+    const CONFIG = {
+      validPasswords: ['paglu', '20nov', 'pratham', 'love', 'paglu20'],
+      totalSections: 6
+    };
+
+    let currentSection = 1;
+
+    // Ambient floating hearts & sparkles generator
+    function initAmbientParticles() {
+      const container = document.getElementById('ambient-container');
+      const emojis = ['🌸', '✨', '💖', '🎀', '🧸', '☁️', '🤍', '⭐'];
+      const count = window.innerWidth < 640 ? 14 : 26;
+
+      for (let i = 0; i < count; i++) {
+        const span = document.createElement('span');
+        span.className = 'absolute select-none pointer-events-none opacity-40';
+        span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        span.style.left = Math.random() * 100 + 'vw';
+        span.style.top = Math.random() * 100 + 'vh';
+        span.style.fontSize = (Math.random() * 16 + 14) + 'px';
+        container.appendChild(span);
+
+        gsap.to(span, {
+          y: '-=130',
+          x: '+=35',
+          rotation: Math.random() * 360,
+          duration: Math.random() * 6 + 6,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          delay: Math.random() * 4
+        });
+      }
+    }
+
+    // Dynamic interactive mouse/touch trail sparkles
+    let lastSparkleTime = 0;
+    function spawnSparkleAt(x, y) {
+      const now = Date.now();
+      if (now - lastSparkleTime < 70) return;
+      lastSparkleTime = now;
+
+      const heart = document.createElement('span');
+      heart.className = 'heart-bubble text-sm select-none';
+      heart.textContent = ['💗', '✨', '🌸', '🎀'][Math.floor(Math.random() * 4)];
+      heart.style.left = (x - 10) + 'px';
+      heart.style.top = (y - 15) + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1000);
+    }
+
+    window.addEventListener('mousemove', (e) => spawnSparkleAt(e.clientX, e.clientY));
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches[0]) {
+        spawnSparkleAt(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    // Navigation and GSAP smooth screen transition
+    function navigateToSection(targetIndex) {
+      if (targetIndex === currentSection) return;
+
+      const currentEl = document.getElementById(`section-${currentSection}`);
+      const nextEl = document.getElementById(`section-${targetIndex}`);
+
+      if (!currentEl || !nextEl) return;
+
+      gsap.to(currentEl, {
+        opacity: 0,
+        y: -15,
+        scale: 0.96,
+        duration: 0.35,
+        ease: 'power2.in',
+        onComplete: () => {
+          currentEl.classList.add('hidden');
+          nextEl.classList.remove('hidden');
+          
+          gsap.fromTo(nextEl, 
+            { opacity: 0, y: 25, scale: 0.96 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: 'back.out(1.2)' }
+          );
+
+          currentSection = targetIndex;
+          updateHeader();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    }
+
+    function updateHeader() {
+      const badge = document.getElementById('progress-indicator');
+      if (badge) {
+        badge.textContent = `${currentSection} / ${CONFIG.totalSections}`;
+      }
+    }
+
+    // Playful Sound Synthesizer via Web Audio API
+    let audioCtx = null;
+    function playRomanticChime() {
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        
+        const now = audioCtx.currentTime;
+        const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+        notes.forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.09);
+          gain.gain.setValueAtTime(0.12, now + idx * 0.09);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.09 + 0.45);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + idx * 0.09);
+          osc.stop(now + idx * 0.09 + 0.5);
+        });
+      } catch (e) {
+        console.log("Audio not allowed yet:", e);
+      }
+    }
+
+    // Confetti celebration
+    function triggerConfetti(originY = 0.6) {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 75,
+          spread: 80,
+          origin: { y: originY },
+          colors: ['#FFF1F5', '#FADCE5', '#F8C8D8', '#E9A0B5', '#E27396', '#FFD166']
+        });
+      }
+    }
+
+    // Initialize logic on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      initAmbientParticles();
+
+      // Music / chime icon toggle
+      const musicBtn = document.getElementById('music-toggle');
+      musicBtn.addEventListener('click', () => {
+        playRomanticChime();
+        musicBtn.classList.add('bg-brand-accent', 'text-white');
+        setTimeout(() => musicBtn.classList.remove('bg-brand-accent', 'text-white'), 500);
+      });
+
+      // SECTION 1: Password Gate
+      const passInput = document.getElementById('password-input');
+      const unlockBtn = document.getElementById('unlock-btn');
+      const passError = document.getElementById('password-error');
+
+      function checkPassword() {
+        const val = passInput.value.trim().toLowerCase();
+        if (CONFIG.validPasswords.includes(val)) {
+          passError.classList.add('hidden');
+          playRomanticChime();
+          triggerConfetti(0.5);
+          navigateToSection(2);
+        } else {
+          passError.classList.remove('hidden');
+          gsap.fromTo(passInput, { x: -8 }, { x: 8, duration: 0.08, repeat: 4, yoyo: true });
+        }
+      }
+
+      unlockBtn.addEventListener('click', checkPassword);
+      passInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') checkPassword();
+      });
+
+      // ==============================================
+      // SECTION 2: ADORABLE YES / NO LOGIC
+      // ==============================================
+      const btnYes = document.getElementById('btn-yes');
+      const btnNo = document.getElementById('btn-no');
+      const noBtnText = document.getElementById('no-btn-text');
+      const noFeedback = document.getElementById('no-crying-feedback');
+      const q2Default = document.getElementById('q2-character-default');
+      const q2Crying = document.getElementById('q2-bubu-crying');
+      const q2Happy = document.getElementById('q2-bubu-happy');
+      const q2Title = document.getElementById('q2-title');
+
+      let noClickCount = 0;
+
+      // Playful NO button evasion logic
+      function evadeNoButton() {
+        noClickCount++;
+        
+        // Show Crying GIF and hide default
+        q2Default.classList.add('hidden');
+        q2Happy.classList.add('hidden');
+        q2Crying.classList.remove('hidden');
+
+        // Update playful prompt text
+        q2Title.textContent = "Pagluuu, why NO?! 😭💔";
+
+        // Show crying feedback box with bounce
+        noFeedback.classList.remove('hidden');
+        gsap.fromTo(noFeedback, 
+          { scale: 0.8, opacity: 0 }, 
+          { scale: 1, opacity: 1, duration: 0.35, ease: 'back.out(2)' }
+        );
+
+        // Make YES button grow bigger, bouncy and glowier
+        const newScale = Math.min(1.05 + (noClickCount * 0.1), 1.45);
+        gsap.to(btnYes, { 
+          scale: newScale, 
+          duration: 0.35, 
+          ease: 'elastic.out(1, 0.4)' 
+        });
+        btnYes.classList.add('animate-pulse-glow');
+
+        // Dodge / Run away: Calculate random offset
+        const moveDistances = [
+          { x: -55, y: -15 },
+          { x: 55, y: -10 },
+          { x: -45, y: 25 },
+          { x: 45, y: 20 },
+          { x: 0, y: 35 }
+        ];
+        const move = moveDistances[noClickCount % moveDistances.length];
+
+        gsap.to(btnNo, {
+          x: move.x,
+          y: move.y,
+          duration: 0.28,
+          ease: 'power2.out'
+        });
+
+        // Evolving button texts
+        if (noClickCount === 1) {
+          noBtnText.textContent = "Wait, are you sure? 🥺";
+        } else if (noClickCount === 2) {
+          noBtnText.textContent = "Think again, my Paglu! 🙈";
+        } else if (noClickCount >= 3) {
+          noBtnText.textContent = "Okay okay, YES please! 💖";
+          btnNo.classList.replace('text-brand-text', 'text-brand-accent');
+        }
+
+        // Spawn a burst of broken heart & crying emojis
+        const rect = btnNo.getBoundingClientRect();
+        for (let i = 0; i < 4; i++) {
+          const span = document.createElement('span');
+          span.className = 'heart-bubble text-base';
+          span.textContent = ['💔', '🥺', '😭', '💧'][i];
+          span.style.left = (rect.left + Math.random() * rect.width) + 'px';
+          span.style.top = rect.top + 'px';
+          document.body.appendChild(span);
+          setTimeout(() => span.remove(), 1000);
+        }
+      }
+
+      // Evade on click
+      btnNo.addEventListener('click', (e) => {
+        e.preventDefault();
+        evadeNoButton();
+      });
+
+      // Also dodge playfully on hover when attempted after 1st click
+      btnNo.addEventListener('mouseenter', () => {
+        if (noClickCount >= 1 && noClickCount < 3) {
+          evadeNoButton();
+        }
+      });
+
+      // YES Button Handler: Celebrates with Happy hugging GIF before navigating
+      btnYes.addEventListener('click', () => {
+        playRomanticChime();
+        triggerConfetti(0.4);
+
+        // Switch to Happy Hugging GIF
+        q2Default.classList.add('hidden');
+        q2Crying.classList.add('hidden');
+        q2Happy.classList.remove('hidden');
+        q2Title.textContent = "Yaaay, I knew it! 🥰";
+
+        // Heart animation
+        gsap.to(btnYes, {
+          scale: 1.15,
+          duration: 0.2,
+          yoyo: true,
+          repeat: 1,
+          ease: 'power2.out',
+          onComplete: () => {
+            setTimeout(() => {
+              navigateToSection(3);
+            }, 750);
+          }
+        });
+      });
+
+      // SECTION 3 -> SECTION 4 Navigation
+      document.getElementById('to-section-4').addEventListener('click', () => {
+        playRomanticChime();
+        navigateToSection(4);
+      });
+
+      // SECTION 4: Birthday Cake Blow Candle & Confetti
+      const cakePoster = document.getElementById('cake-poster');
+      const candleFlame = document.getElementById('candle-flame');
+      const confettiBtn = document.getElementById('btn-confetti-burst');
+      const videoLabel = document.getElementById('video-label');
+      const cakeStatusText = document.getElementById('cake-status-text');
+
+      let candleBlown = false;
+
+      function blowCandleCelebration() {
+        triggerConfetti(0.45);
+        playRomanticChime();
+
+        if (!candleBlown) {
+          candleBlown = true;
+          // Animate candle flame vanishing with a gentle puff
+          gsap.to(candleFlame, {
+            scale: 0,
+            opacity: 0,
+            duration: 0.3,
+            transformOrigin: "center center",
+            ease: "power2.in"
+          });
+
+          // Celebratory bounce on cake SVG
+          gsap.fromTo('#cake-svg', 
+            { scale: 0.95 }, 
+            { scale: 1.2, duration: 0.4, yoyo: true, repeat: 1, ease: 'elastic.out(1, 0.4)' }
+          );
+
+          if (videoLabel) videoLabel.textContent = '🎂 Candle Blown! Happy Birthday!';
+          if (cakeStatusText) cakeStatusText.textContent = 'Wish Made! May all your dreams come true! 💖';
+        } else {
+          // Re-sparkle celebration on repeated taps
+          gsap.fromTo('#cake-svg', 
+            { scale: 1 }, 
+            { scale: 1.12, duration: 0.25, yoyo: true, repeat: 1, ease: 'back.out(2)' }
+          );
+        }
+      }
+
+      cakePoster.addEventListener('click', blowCandleCelebration);
+      confettiBtn.addEventListener('click', () => {
+        playRomanticChime();
+        triggerConfetti(0.6);
+      });
+
+      // SECTION 4 -> SECTION 5 Navigation
+      document.getElementById('to-section-5').addEventListener('click', () => {
+        playRomanticChime();
+        navigateToSection(5);
+      });
+
+      // SECTION 5: Animated Love Letter Unfolding
+      const envelopeBox = document.getElementById('envelope-box');
+      const envelopeGraphic = document.getElementById('envelope-graphic');
+      const letterContent = document.getElementById('letter-content');
+
+      let letterOpened = false;
+      envelopeBox.addEventListener('click', () => {
+        if (!letterOpened) {
+          letterOpened = true;
+          playRomanticChime();
+          triggerConfetti(0.4);
+
+          gsap.to(envelopeGraphic, {
+            scale: 0.8,
+            opacity: 0,
+            duration: 0.4,
+            onComplete: () => {
+              envelopeGraphic.classList.add('hidden');
+              letterContent.classList.remove('hidden');
+              gsap.fromTo(letterContent, 
+                { opacity: 0, y: 30, scale: 0.95 }, 
+                { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power2.out' }
+              );
+            }
+          });
+        }
+      });
+
+      // SECTION 5 -> SECTION 6 Navigation
+      document.getElementById('to-section-6').addEventListener('click', () => {
+        playRomanticChime();
+        triggerConfetti(0.3);
+        navigateToSection(6);
+      });
+
+      // SECTION 6: Final Celebrations & Replay
+      document.getElementById('btn-big-celebrate').addEventListener('click', () => {
+        playRomanticChime();
+        for (let i = 0; i < 4; i++) {
+          setTimeout(() => triggerConfetti(0.25 + (i * 0.15)), i * 220);
+        }
+      });
+
+      document.getElementById('btn-replay').addEventListener('click', () => {
+        // Reset state & return to Section 1
+        passInput.value = '';
+        noClickCount = 0;
+        letterOpened = false;
+        candleBlown = false;
+        
+        // Reset candle flame
+        if (candleFlame) {
+          gsap.set(candleFlame, { scale: 1, opacity: 1 });
+        }
+        if (videoLabel) videoLabel.textContent = 'Birthday Cake Ready';
+        if (cakeStatusText) cakeStatusText.textContent = 'Tap Cake To Blow Candle & Make A Wish! 🕯️';
+
+        envelopeGraphic.classList.remove('hidden');
+        envelopeGraphic.style.opacity = '1';
+        envelopeGraphic.style.transform = 'none';
+        letterContent.classList.add('hidden');
+        
+        // Reset section 2 state
+        noBtnText.textContent = "NO, NOT INTERESTED";
+        btnNo.classList.replace('text-brand-accent', 'text-brand-text');
+        gsap.set(btnNo, { x: 0, y: 0 });
+        gsap.set(btnYes, { scale: 1 });
+        btnYes.classList.remove('animate-pulse-glow');
+        noFeedback.classList.add('hidden');
+        q2Default.classList.remove('hidden');
+        q2Crying.classList.add('hidden');
+        q2Happy.classList.add('hidden');
+        q2Title.textContent = "Waittt, my Paglu! 🥺";
+        
+        navigateToSection(1);
+      });
+
+    });
+  </script>
+
+
+</body></html>
